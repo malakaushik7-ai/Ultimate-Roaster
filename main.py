@@ -26,14 +26,23 @@ def load_roasts(file_path):
         return ["Roast load karte time error aa gayi"]
 
 # Saare roast styles load karna
-roasts = {
-    'hs': load_roasts('roasts/hs.txt'), # hindi savage
-    'es': load_roasts('roasts/es.txt'), # english savage
-    'hr': load_roasts('roasts/hr.txt'), # hindi rizz
-    'er': load_roasts('roasts/er.txt'), # english rizz
-    'hi': load_roasts('roasts/hi.txt'), # hindi insult
-    'he': load_roasts('roasts/he.txt') # hindi english mix
-}
+roastimport os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+def load_roasts(file_name):
+    """txt file se saare roasts load karega"""
+    file_path = os.path.join(BASE_DIR, "roasts", file_name)
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = [line.strip() for line in f if line.strip()]
+            if not data:
+                return ["Is style me roast nahi hai 😅 file khali hai"]
+            return data
+    except FileNotFoundError:
+        return [f"Roast list khali hai bhai file nahi mili: {file_path}"]
+    except Exception as e:
+        return [f"Error: {e}"]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
