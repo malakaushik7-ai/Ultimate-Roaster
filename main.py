@@ -19,6 +19,8 @@ roasts = {
     'es': load_roasts('roasts/es.txt'),
     'hr': load_roasts('roasts/hr.txt'),
     'er': load_roasts('roasts/er.txt')
+    'er': load_roasts('roasts/hi.txt')
+    'er': load_roasts('roasts/he.txt')
 }
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
